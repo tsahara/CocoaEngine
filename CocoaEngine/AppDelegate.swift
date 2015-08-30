@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         canvas.needsDisplay = true
         
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timer:"), userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("timer:"), userInfo: nil, repeats: true)
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -93,10 +93,11 @@ class EngineView : NSView {
         path.fill()
 
         // connecting rod
+        let rb = r*0.5
         var angle = 2.0*M_PI * Double(tick + speed/2) / Double(speed)
-        let x5 = cx + ra * CGFloat(cos(angle))
-        let y5 = cy + ra * CGFloat(sin(angle))
-        let yp = cy + sqrt(pow(r*2, 2.0) - pow(ra/2 * CGFloat(cos(angle)), 2.0)) + ra * CGFloat(sin(angle))
+        let x5 = cx + rb * CGFloat(cos(angle))
+        let y5 = cy + rb * CGFloat(sin(angle))
+        let yp = cy + sqrt(pow(r*2, 2.0) - pow(rb/2 * CGFloat(cos(angle)), 2.0)) + rb * CGFloat(sin(angle))
         
         NSColor.cyanColor().setStroke()
         path.lineJoinStyle = NSLineJoinStyle.RoundLineJoinStyle
